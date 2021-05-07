@@ -1,0 +1,8 @@
+streamlit
+datetime
+yfinance
+fbprophet
+plotly
+statsmodels
+matplotlib
+numpy
