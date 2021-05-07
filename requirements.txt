@@ -6,4 +6,5 @@ pystan==2.19.1.1
 plotly
 statsmodels
 matplotlib
-fbprophet
+fbprophet==0.5
+holidays==0.9.12
