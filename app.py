@@ -31,7 +31,7 @@ data_load_state = st.text('Loading data...')
 data = load_data(selected_stock)
 data_load_state.text('Loading data... done!')
 
-st.subheader('Raw data')
+st.subheader('Raw Data')
 st.write(data.tail())
 
 # Plot raw data
@@ -53,17 +53,7 @@ m.fit(df_train)
 future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
 
-# Show and plot forecast
-st.subheader('Forecast data')
-st.write(forecast.tail())
-    
-st.write(f'Forecast plot for {n_years} years')
-fig1 = plot_plotly(m, forecast)
-st.plotly_chart(fig1)
-
-st.write("Forecast components")
-fig2 = m.plot_components(forecast)
-st.write(fig2)
+st.subheader('Autocorretion of Data')
 def plot_series(time1, series1, label1, xlabel, ylabel,time2 = [], series2 = [], label2 ="",format="-", start=0, end=None, title="", line=False):
   """
   defining the plot function for plotting all the true and forcasted prices 
@@ -80,12 +70,24 @@ def plot_series(time1, series1, label1, xlabel, ylabel,time2 = [], series2 = [],
   legend = ax.legend(shadow=True, fontsize='x-large')
   title = ax.set_title(title)
   plt.show()
-# I am fitting the data to get the correlation coefficents that will be plotted
-st.write("Autocorrelation Results")
 autocorr = sm.tsa.acf(df_train['y'],nlags=len(df_train))
-fig_3 = plot_series(np.arange(len(df_train['ds'])), autocorr, label1 = None,
+fig3 = plot_series(np.arange(len(df_train['ds'])), autocorr, label1 = None,
             title='Company Autocorrelation between Daily Stock Prices',
             xlabel='Days Count',
             ylabel='Autocorrelation Value',
             line=True)
-st.write(fig_3)
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot(fig3)
+# Show and plot forecast
+st.subheader('Forecast Data')
+st.write(forecast.tail())
+    
+st.write(f'Forecast plot for {n_years} years')
+fig1 = plot_plotly(m, forecast)
+st.plotly_chart(fig1)
+
+st.write("Forecast components")
+fig2 = m.plot_components(forecast)
+st.write(fig2)
+
+# I am fitting the data to get the correlation coefficents that will be plotted
