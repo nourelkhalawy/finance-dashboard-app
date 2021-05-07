@@ -2,8 +2,8 @@ streamlit
 datetime
 yfinance
 pystan
-fbprophet
 plotly
 statsmodels
 matplotlib
 numpy
+fbprophet
