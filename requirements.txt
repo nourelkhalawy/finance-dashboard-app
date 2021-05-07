@@ -7,3 +7,4 @@ plotly
 statsmodels
 matplotlib
 fbprophet==0.5
+holidays==0.9.12
